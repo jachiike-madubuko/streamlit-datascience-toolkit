@@ -1,0 +1,14 @@
+{
+    "folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\macro-streamlit"
+		},
+		{
+			"path": "..\\eds_projects"
+		}
+	],
+    "settings": {}
+}
