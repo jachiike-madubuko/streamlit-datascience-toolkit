@@ -8,9 +8,9 @@ pages = ("🐍 for 👩🏿‍💻🧙🏿‍♂️",
          )
 page_data = [
     {
-        'bg': 'primary',
+        'bg': 'light',
         'subtitle': 'Python for Data Science',
-        'description': 'Python for Data Science',
+        'description': 'Deliverable: Trained Model File. ML Task: Regression. Target Variable: Transaction Price. Win Condition: Mean Absolute Error less than $70000',
         'sections': {
             'Data Structures': "Lists, Tuples, Sets & Dictionaries",
             # 'Data Structures': "I. Lists are mutable sequences of objects. \n II. Tuples are immutable sequences of objects. \n III. Sets are collections of unique objects. \n IV. Dictionaries are collections of key-value pairs.",
@@ -22,7 +22,8 @@ page_data = [
     {
         'bg': 'secondary',
         'subtitle': 'How the world works',
-        'description': 'How the world works',
+        'description': 'Deliverable: Trained Model File. ML Task: Regression. Target Variable: Transaction Price. Win Condition: Mean Absolute Error less than $70000',
+
         'sections': {
             'Fake It Til You Make It': "nah",
             'Mean Models & Linear Regression': "mean good",
@@ -33,8 +34,9 @@ page_data = [
     },
     {
         'bg': 'info',
-        'subtitle': 'Real-Estate Tycoon',
-        'description': 'Real-Estate Tycoon',
+        'subtitle': 'Goal: Build a model to predict transaction prices with an average error of under $70,000',
+        'description': 'Deliverable: Trained Model File. ML Task: Regression. Target Variable: Transaction Price. Win Condition: Mean Absolute Error < $70000',
+
         'sections': {
             'Exploratory Analysis': "explore",
             'Data Cleaning': 'Data Cleaning',
@@ -46,19 +48,21 @@ page_data = [
     {
         'bg': 'success',
         'subtitle': 'Know your people',
-        'description': 'Know your people, know your power',
+        'description': 'Deliverable: Trained Model File. ML Task: Regression. Target Variable: Transaction Price. Win Condition: Mean Absolute Error less than $70000',
+
         'sections': {
             'Exploratory Analysis 2': 'Exploratory Analysis 2',
             'ABT': 'ABT',
             'Classification Model Selection': 'Classification Model Selection',
             'Model Evaluation': 'Model Evaluation',
             'Production Prediction': 'Production Prediction',
-    }
+        }
     },
     {
         'bg': 'danger',
         'subtitle': 'Super swaggy',
-        'description': 'Super swaggy',
+        'description': 'Deliverable: Trained Model File. ML Task: Regression. Target Variable: Transaction Price. Win Condition: Mean Absolute Error less than $70000',
+
         'sections': {
             'Data Wrangling': 'Data Wrangling',
             'Dimensionality Reduction': 'Dimensionality Reduction',
@@ -70,7 +74,8 @@ page_data = [
     {
         'bg': 'warning',
         'subtitle': 'To the stars',
-        'description': 'To the stars',
+        'description': 'Deliverable: Trained Model File. ML Task: Regression. Target Variable: Transaction Price. Win Condition: Mean Absolute Error less than $70000',
+
         'sections': {
             'To The Stars': 'To The Stars',
             'The Mission': 'The Mission',

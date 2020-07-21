@@ -1,3 +1,39 @@
+import seaborn as sns
+from matplotlib import pyplot as plt
+import numpy as np
+# https: // docs.streamlit.io/en/stable/api.html
+# Pandas for DataFrames
+import pandas as pd
+import altair as alt
+
+# Matplotlib for visualization
+# display plots in the notebook
+
+# Seaborn for easier visualization
+sns.set_style('darkgrid')
+
+def import_csv(lit, url):
+    df = pd.read_csv(url)
+    lit.write(df.head(100))
+    return df
+
+
+def exploratory_analysis(lit, df):
+    lit.subheader(
+        'TODO:Template to display shape and number of categorical vs numerical cols')
+    lit.write(df.shape)
+    lit.write(df.dtypes)
+
+    lit.subheader('Data Distribution')
+    df.hist()
+    lit.pyplot()
+
+    lit.subheader('Numerical Features')
+    lit.write(df.describe())
+
+    lit.subheader('Categorical Features')
+    lit.write(df.describe(include=['object']))
+
 class DataView(object):
     def __init__(self, name, lit):
         super().__init__()
@@ -69,9 +105,58 @@ class DataController(object):
         super().__init__()
 
 
+
+#try setting global litty varible to enable data caching
+#figure out how to advance cache
 class DataMVC(object):
-    def __init__(self):
+    def __init__(self, lit, url):
         super().__init__()
-        self.data_model = DataModel()
-        self.data_view = DataView()
-        self.data_controller = DataController()
+        # self.data_model = DataModel()
+        # self.data_view = DataView()
+        # self.data_controller = DataController()
+        self.url = url
+        self.lit = lit
+        self.df = None
+        self.import_csv()
+
+    def get_df(self):
+        return self.df
+
+    def import_csv(self):
+        self.df = pd.read_csv(self.url)
+        self.lit.header(self.url.split('/')[-1][:-4].replace('_', ' ').title())
+        self.lit.write(self.df.head(100))
+        return self.df
+
+    def exploratory_analysis(self):
+        self.lit.subheader(
+            'TODO:Template to display shape and number of categorical vs numerical cols')
+        self.lit.write(self.df.shape)
+        self.lit.write(self.df.dtypes)
+
+        self.lit.subheader('Data Distribution')
+        plt.figure(figsize=(8,8))
+        self.df.hist()
+        self.lit.pyplot()
+
+        self.lit.subheader('Numerical Features')
+        # TODO: figure out how to add pandas stlying  of data smells like missing values and std of 0
+        self.lit.write(self.df.describe())
+
+        self.lit.subheader('Categorical Features')
+        self.lit.write(self.df.describe(include=['object']))
+
+        categorical = list(self.df.columns[self.df.dtypes == 'object'])
+        numerical = list(self.df.columns[self.df.dtypes != 'object'])
+
+        cate = self.lit.selectbox('Categorical Cols', categorical)
+        sns.countplot(y=cate, data=self.df)
+        self.lit.pyplot()
+
+        num = self.lit.selectbox('Numerical Cols', numerical)
+        sns.boxplot(y=cate, x=num, data=self.df)
+        sns.heatmap(self.df.corr(), cmap='RdBu_r')
+        self.lit.pyplot()
+
+        self.lit.write(self.df.groupby(cate).mean())
+        self.lit.header('Do workbook exercises before moving to data cleaning')
