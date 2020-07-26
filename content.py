@@ -1,7 +1,7 @@
 import streamlit as lit
 pages = ("🐍 for 👩🏿‍💻🧙🏿‍♂️",
          "How the 🌎 Works",
-         "🏡 Tycoon",
+         "🏡🏡 Tycoon",
          "Chief People Officer",
          "Unsupervised Customers",
          "🚀 🌌",
@@ -87,10 +87,3 @@ page_data = [
     },
 ]
 page_render = dict(zip(list(pages), page_data))
-
-
-def write(text):
-    if "<" in text:
-        lit.write(text, unsafe_allow_html=True)
-    else:
-        lit.write(text)

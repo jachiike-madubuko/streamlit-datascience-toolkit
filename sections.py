@@ -11,8 +11,9 @@ pd.set_option('display.max_columns', 100)
 sns.set_style('darkgrid')
 
 from utils.exploratory_analysis import *
+from utils.data_cleaning import *
 
-def data_structures_render(lit):
+def data_structures_render(lit,color):
     data_struct = lit.selectbox('Pick a data structure', [
                                 'Lists', 'Tuples', 'Sets', 'Dictionaries'])
     lit.header(data_struct)
@@ -29,44 +30,42 @@ def data_structures_render(lit):
         lit.subheader('dict content here')
 
 
-def numpy_render(lit):
+def numpy_render(lit,color):
     lit.header('num my pie')
 
 
-def pandas_render(lit):
+def pandas_render(lit,color):
     lit.header('black and white')
 
 
-def flow_render(lit):
+def flow_render(lit,color):
     lit.header('hustle and flow')
 
 
-def fake_render(lit):
+def fake_render(lit,color):
     lit.header('fake mean')
 
 
-def mean_render(lit):
+def mean_render(lit,color):
     lit.header('lean mean')
 
 
-def poly_render(lit):
+def poly_render(lit,color):
     lit.header('polyglot')
 
 
-def tree_render(lit):
+def tree_render(lit,color):
     lit.header('trees and leaves')
 
 
-def truth_render(lit):
+def truth_render(lit,color):
     lit.header('🎨')
 
 
-def explore_render(lit):
-    lit.header('explore 🎨')
+def explore_render(lit,color):
     url = 'data/real_estate_data.csv'
-    data = DataMVC(lit, url)
-    data.exploratory_analysis()
-    df = data.get_df()
+    df = import_csv(url)
+    exploratory_analysis(lit=lit, df=df, color=color)
     # categorical = list(df.columns[df.dtypes == 'object'])
     # numerical = list(df.columns[df.dtypes != 'object'])
 
@@ -79,91 +78,92 @@ def explore_render(lit):
     # lit.pyplot()
 
 
-def cleaning_render(lit):
-    lit.header('🎆🎨')
+def cleaning_render(lit,color):
+    data_cleaning_routine(lit)
 
 
-def feat_render(lit):
+
+def feat_render(lit,color):
     lit.header('feat fire')
 
 
-def regress_render(lit):
+def regress_render(lit,color):
     lit.header('🧨🧨🧨🧨🧨')
 
 
-def training_render(lit):
+def training_render(lit,color):
     lit.header('trainigign ada🎨')
 
 
-def truth_render(lit):
+def truth_render(lit,color):
     lit.header('you can\'t handle the trth🎨')
 
 
-def more_explore_render(lit):
+def more_explore_render(lit,color):
     lit.header('space dadadadaaaa')
 
 
-def abt_render(lit):
+def abt_render(lit,color):
     lit.header('abt vs ebt')
 
 
-def classification_render(lit):
+def classification_render(lit,color):
     lit.header('classy aintcha')
 
 
-def eval_render(lit):
+def eval_render(lit,color):
     lit.header('you 👩🏿‍🚀')
 
 
-def predict_render(lit):
+def predict_render(lit,color):
     lit.header('🕵🏿‍♀️🕵🏿‍♀️🕵🏿‍♂️🕵🏿‍♂️')
 
 
-def wrangling_render(lit):
+def wrangling_render(lit,color):
     lit.header('🐴')
 
 
-def reduction_render(lit):
+def reduction_render(lit,color):
     lit.header('🌌☄')
 
 
-def pca_render(lit):
+def pca_render(lit,color):
     lit.header('PCA')
 
 
-def cluster_render(lit):
+def cluster_render(lit,color):
     lit.header('🌠☄')
 
 
-def analysis_render(lit):
+def analysis_render(lit,color):
     lit.header('🎈🎄🎀')
 
 
-def stars_render(lit):
+def stars_render(lit,color):
     lit.header('🌟🌟')
 
 
-def mission_render(lit):
+def mission_render(lit,color):
     lit.header('⚔⚒')
 
 
-def launch_render(lit):
+def launch_render(lit,color):
     lit.header('🚀🚀🚀')
 
 
-def voyage_render(lit):
+def voyage_render(lit,color):
     lit.header('🎢')
 
 
-def arrival_render(lit):
+def arrival_render(lit,color):
     lit.header('📍')
 
 
-def planet_render(lit):
+def planet_render(lit,color):
     lit.header('👽')
 
 
-def section_render(section, lit):
+def section_render(section, lit, color):
     def nothing():
         lit.write('nothing yet, get to it fool')
         lit.balloons()
@@ -211,4 +211,4 @@ def section_render(section, lit):
     section_dict['The New Planet'] = planet_render
 
     if section_dict[section]:
-        section_dict[section](lit)
+        section_dict[section](lit, color)

@@ -52,8 +52,29 @@ full_message_temp = """
 	"""
 
 list_group_temp = """<div class="mx-5 list-group rounded-pill shadow-lg">{}</div>"""
+hori_list_group_temp = """<div class="my-2 list-group list-group-horizontal rounded-pill shadow">{}</div>"""
 list_group_item_temp = """<button type="button" class="list-group-item list-group-item-action list-group-item-{bg}">{text}</button>"""
+feat_group_item_temp = """<button type="button" class=" d-flex justify-content-between align-items-center list-group-item list-group-item-action list-group-item-{bg}">{text}<span class="mx-1 badge badge-{percent_status} badge-pill">{percent}%</span></button>"""
 
+two_col_temp = """
+ <div class="col">
+      <h3>{}</h3>
+    <div class="row">
+      {}
+    </div>
+      <h3>{}</h3>
+    <div class="row">
+      {}
+    </div>
+  </div>
+"""
+
+
+def divide_chunks(l, n):
+
+    # looping till length l
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
 
 def list_group_render(page_data):
     return list_group_temp.format([
@@ -62,7 +83,27 @@ def list_group_render(page_data):
             'text': i
         }) for i in page_data['description'].split('. ')
     ]).replace('\'', '').replace('[', '').replace(']', '').replace(',', '')
-
+def list_render(data_list, bg, missing_df):
+	n = 4
+	final = [data_list[i * n:(i + 1) * n] for i in range((len(data_list) + n - 1) // n)]
+	return ' '.join([hori_list_group_temp.format([
+        feat_group_item_temp.format_map({
+            'bg': bg,
+            'text': i.title(),
+			'percent': missing_df[i],
+			'percent_status': percent_gate(missing_df[i])
+        }) for i in data
+    ]).replace('\'', '').replace('[', '').replace(']', '').replace(',', '')
+	for data in final])
 # TODO create a class for bundling templates with themes
 
 # class ThemeContext(object):
+
+
+def percent_gate(percent):
+	if percent > 90:
+		return 'success'
+	elif percent > 75:
+		return 'warning'
+	else:
+		return 'danger'
