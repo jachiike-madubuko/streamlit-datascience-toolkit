@@ -13,6 +13,8 @@ sns.set_style('darkgrid')
 from utils.exploratory_analysis import *
 from utils.data_cleaning import *
 
+df = None
+
 def data_structures_render(lit,color):
     data_struct = lit.selectbox('Pick a data structure', [
                                 'Lists', 'Tuples', 'Sets', 'Dictionaries'])
@@ -62,7 +64,7 @@ def truth_render(lit,color):
     lit.header('🎨')
 
 
-def explore_render(lit,color):
+def explore_render(lit, color):
     url = 'data/real_estate_data.csv'
     df = import_csv(url)
     exploratory_analysis(lit=lit, df=df, color=color)
@@ -78,8 +80,10 @@ def explore_render(lit,color):
     # lit.pyplot()
 
 
-def cleaning_render(lit,color):
-    data_cleaning_routine(lit)
+def cleaning_render(lit, color):
+    url = 'data/real_estate_data.csv'
+    df = import_csv(url)
+    abt = data_cleaning_routine(lit=lit, df=df, color=color)
 
 
 
